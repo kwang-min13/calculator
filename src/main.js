@@ -77,33 +77,33 @@ document.addEventListener('DOMContentLoaded', () => {
   // Button click handler
   function handleButtonClick(type, value) {
     switch (type) {
-      case 'digit':
-        calculator.inputDigit(value);
-        break;
-      case 'operator':
-        calculator.inputOperator(value);
-        break;
-      case 'function':
-        calculator.inputFunction(value);
-        break;
-      case 'constant':
-        if (value === 'π') {
-          calculator.inputDigit(Math.PI.toString());
-        }
-        break;
-      case 'parenthesis':
-        // Toggle between ( and )
-        calculator.inputDigit('(');
-        break;
-      case 'clear':
-        calculator.clear();
-        break;
-      case 'backspace':
-        calculator.backspace();
-        break;
-      case 'equals':
-        calculator.calculate();
-        break;
+    case 'digit':
+      calculator.inputDigit(value);
+      break;
+    case 'operator':
+      calculator.inputOperator(value);
+      break;
+    case 'function':
+      calculator.inputFunction(value);
+      break;
+    case 'constant':
+      if (value === 'π') {
+        calculator.inputDigit(Math.PI.toString());
+      }
+      break;
+    case 'parenthesis':
+      // Toggle between ( and )
+      calculator.inputDigit('(');
+      break;
+    case 'clear':
+      calculator.clear();
+      break;
+    case 'backspace':
+      calculator.backspace();
+      break;
+    case 'equals':
+      calculator.calculate();
+      break;
     }
 
     updateDisplay();
