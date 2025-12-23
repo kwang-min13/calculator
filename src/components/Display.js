@@ -2,15 +2,15 @@
  * Display Component - shows calculation history and result
  */
 export class Display {
-    constructor(container) {
-        this.container = container;
-        this.historyElement = null;
-        this.resultElement = null;
-        this.init();
-    }
+  constructor(container) {
+    this.container = container;
+    this.historyElement = null;
+    this.resultElement = null;
+    this.init();
+  }
 
-    init() {
-        this.container.innerHTML = `
+  init() {
+    this.container.innerHTML = `
       <div class="flex flex-col flex-1 justify-end px-6 pb-6 pt-2 relative" role="region" aria-label="Calculator display">
         <!-- Calculation History -->
         <div class="text-right mb-1 opacity-60">
@@ -24,33 +24,33 @@ export class Display {
       </div>
     `;
 
-        this.historyElement = document.getElementById('history');
-        this.resultElement = document.getElementById('result');
-    }
+    this.historyElement = document.getElementById('history');
+    this.resultElement = document.getElementById('result');
+  }
 
-    updateHistory(expression) {
-        if (this.historyElement) {
-            this.historyElement.textContent = expression || '';
-        }
+  updateHistory(expression) {
+    if (this.historyElement) {
+      this.historyElement.textContent = expression || '';
     }
+  }
 
-    updateResult(result) {
-        if (this.resultElement) {
-            this.resultElement.textContent = result || '0';
-            this.clearError();
-        }
+  updateResult(result) {
+    if (this.resultElement) {
+      this.resultElement.textContent = result || '0';
+      this.clearError();
     }
+  }
 
-    showError(message) {
-        if (this.resultElement) {
-            this.resultElement.textContent = message;
-            this.resultElement.classList.add('text-rose-600', 'dark:text-rose-400');
-        }
+  showError(message) {
+    if (this.resultElement) {
+      this.resultElement.textContent = message;
+      this.resultElement.classList.add('text-rose-600', 'dark:text-rose-400');
     }
+  }
 
-    clearError() {
-        if (this.resultElement) {
-            this.resultElement.classList.remove('text-rose-600', 'dark:text-rose-400');
-        }
+  clearError() {
+    if (this.resultElement) {
+      this.resultElement.classList.remove('text-rose-600', 'dark:text-rose-400');
     }
+  }
 }
