@@ -11,15 +11,15 @@ export class Display {
 
     init() {
         this.container.innerHTML = `
-      <div class="flex flex-col flex-1 justify-end px-6 pb-6 pt-2 relative">
+      <div class="flex flex-col flex-1 justify-end px-6 pb-6 pt-2 relative" role="region" aria-label="Calculator display">
         <!-- Calculation History -->
         <div class="text-right mb-1 opacity-60">
-          <span id="history" class="text-xl md:text-2xl font-medium tracking-wide text-slate-600 dark:text-slate-400"></span>
+          <span id="history" class="text-xl md:text-2xl font-medium tracking-wide text-slate-600 dark:text-slate-400" aria-label="Calculation history"></span>
         </div>
         
         <!-- Main Result -->
         <div class="text-right">
-          <h1 id="result" class="text-6xl md:text-7xl font-bold tracking-tight leading-none break-all text-[#111418] dark:text-white" aria-live="polite" aria-atomic="true">0</h1>
+          <h1 id="result" class="text-6xl md:text-7xl font-bold tracking-tight leading-none break-all text-[#111418] dark:text-white" aria-live="polite" aria-atomic="true" aria-label="Calculation result">0</h1>
         </div>
       </div>
     `;

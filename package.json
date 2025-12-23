@@ -23,6 +23,7 @@
   "author": "Kwang Min",
   "license": "MIT",
   "devDependencies": {
+    "@vitest/coverage-v8": "^1.6.1",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.55.0",
     "postcss": "^8.4.32",
