@@ -2,8 +2,7 @@
 import { Calculator } from './core/Calculator.js';
 
 // Import components
-
-
+import { Display } from './components/Display.js';
 import { Keypad } from './components/Keypad.js';
 import { ModeToggle } from './components/ModeToggle.js';
 import { HistoryModal } from './components/HistoryModal.js';
@@ -60,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Mode Toggle
   const modeToggleContainer = document.getElementById('mode-toggle-container');
-  const modeToggle = new ModeToggle(modeToggleContainer, (mode) => {
+  new ModeToggle(modeToggleContainer, (mode) => {
     calculator.toggleAngleMode();
     console.log(`Angle mode changed to: ${mode}`);
   });
@@ -73,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Keypad
   const keypadContainer = document.getElementById('keypad-container');
-  const keypad = new Keypad(keypadContainer, (type, value) => {
+  new Keypad(keypadContainer, (type, value) => {
     handleButtonClick(type, value);
   });
 
@@ -127,39 +126,39 @@ document.addEventListener('DOMContentLoaded', () => {
   // Button click handler
   function handleButtonClick(type, value) {
     switch (type) {
-      case 'digit':
-        calculator.inputDigit(value);
-        break;
-      case 'operator':
-        calculator.inputOperator(value);
-        break;
-      case 'function':
-        calculator.inputFunction(value);
-        break;
-      case 'constant':
-        if (value === 'π') {
-          calculator.inputDigit(Math.PI.toString());
-        }
-        break;
-      case 'parenthesis':
-        // Toggle between ( and )
-        calculator.inputDigit('(');
-        break;
-      case 'clear':
-        calculator.clear();
-        break;
-      case 'backspace':
-        calculator.backspace();
-        break;
-      case 'equals':
-        calculator.calculate();
-        break;
-      case 'memory':
-        if (value === 'M+') calculator.memoryAdd();
-        else if (value === 'M-') calculator.memorySubtract();
-        else if (value === 'MR') calculator.memoryRecall();
-        else if (value === 'MC') calculator.memoryClear();
-        break;
+    case 'digit':
+      calculator.inputDigit(value);
+      break;
+    case 'operator':
+      calculator.inputOperator(value);
+      break;
+    case 'function':
+      calculator.inputFunction(value);
+      break;
+    case 'constant':
+      if (value === 'π') {
+        calculator.inputDigit(Math.PI.toString());
+      }
+      break;
+    case 'parenthesis':
+      // Toggle between ( and )
+      calculator.inputDigit('(');
+      break;
+    case 'clear':
+      calculator.clear();
+      break;
+    case 'backspace':
+      calculator.backspace();
+      break;
+    case 'equals':
+      calculator.calculate();
+      break;
+    case 'memory':
+      if (value === 'M+') calculator.memoryAdd();
+      else if (value === 'M-') calculator.memorySubtract();
+      else if (value === 'MR') calculator.memoryRecall();
+      else if (value === 'MC') calculator.memoryClear();
+      break;
     }
 
     updateDisplay();

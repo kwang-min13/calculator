@@ -4,16 +4,16 @@ import { ThemeManager } from '../utils/themeManager.js';
  * Settings Modal Component
  */
 export class SettingsModal {
-    constructor(container, calculator, onSettingsChange) {
-        this.container = container;
-        this.calculator = calculator;
-        this.onSettingsChange = onSettingsChange;
-        this.isOpen = false;
-        this.render();
-    }
+  constructor(container, calculator, onSettingsChange) {
+    this.container = container;
+    this.calculator = calculator;
+    this.onSettingsChange = onSettingsChange;
+    this.isOpen = false;
+    this.render();
+  }
 
-    render() {
-        this.container.innerHTML = `
+  render() {
+    this.container.innerHTML = `
       <div id="settings-modal" class="absolute inset-0 z-50 transform transition-transform duration-300 -translate-x-full bg-white dark:bg-slate-900 flex flex-col">
         <!-- Header -->
         <div class="flex items-center justify-between p-4 border-b border-gray-100 dark:border-slate-800">
@@ -69,83 +69,83 @@ export class SettingsModal {
       </div>
     `;
 
-        this.modal = this.container.querySelector('#settings-modal');
-        this.precisionInput = this.container.querySelector('#precision-input');
-        this.precisionValue = this.container.querySelector('#precision-value');
-        this.themeBtns = this.container.querySelectorAll('.theme-btn');
+    this.modal = this.container.querySelector('#settings-modal');
+    this.precisionInput = this.container.querySelector('#precision-input');
+    this.precisionValue = this.container.querySelector('#precision-value');
+    this.themeBtns = this.container.querySelectorAll('.theme-btn');
 
-        this.updateThemeUI(ThemeManager.getTheme());
-        this.attachEventListeners();
-    }
+    this.updateThemeUI(ThemeManager.getTheme());
+    this.attachEventListeners();
+  }
 
-    attachEventListeners() {
-        const closeBtn = this.container.querySelector('#close-settings-btn');
-        const resetBtn = this.container.querySelector('#reset-app-btn');
+  attachEventListeners() {
+    const closeBtn = this.container.querySelector('#close-settings-btn');
+    const resetBtn = this.container.querySelector('#reset-app-btn');
 
-        closeBtn.addEventListener('click', () => this.close());
+    closeBtn.addEventListener('click', () => this.close());
 
-        // Precision
-        this.precisionInput.addEventListener('input', (e) => {
-            const value = parseInt(e.target.value);
-            this.precisionValue.textContent = value;
-            this.calculator.settings.precision = value;
-            this.calculator.saveState();
-            this.onSettingsChange();
-        });
+    // Precision
+    this.precisionInput.addEventListener('input', (e) => {
+      const value = parseInt(e.target.value);
+      this.precisionValue.textContent = value;
+      this.calculator.settings.precision = value;
+      this.calculator.saveState();
+      this.onSettingsChange();
+    });
 
-        // Theme
-        this.themeBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const theme = btn.dataset.theme;
-                ThemeManager.setTheme(theme);
-                this.updateThemeUI(theme);
+    // Theme
+    this.themeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const theme = btn.dataset.theme;
+        ThemeManager.setTheme(theme);
+        this.updateThemeUI(theme);
 
-                // Save theme to settings in calculator (via storage)
-                // Actually ThemeManager handles local storage for theme separately usually,
-                // but we want to sync it with our centralized storage if possible,
-                // OR just rely on ThemeManager.
-                // Let's stick to ThemeManager for now, but maybe update calculator settings ref?
-                this.calculator.settings.theme = theme;
-                this.calculator.saveState();
-            });
-        });
+        // Save theme to settings in calculator (via storage)
+        // Actually ThemeManager handles local storage for theme separately usually,
+        // but we want to sync it with our centralized storage if possible,
+        // OR just rely on ThemeManager.
+        // Let's stick to ThemeManager for now, but maybe update calculator settings ref?
+        this.calculator.settings.theme = theme;
+        this.calculator.saveState();
+      });
+    });
 
-        // Reset
-        resetBtn.addEventListener('click', () => {
-            if (confirm('This will delete all history and reset settings. Are you sure?')) {
-                this.calculator.clearHistory();
-                this.calculator.settings = { precision: 10, theme: 'auto' };
-                this.calculator.saveState();
-                ThemeManager.setTheme('auto');
-                this.updateThemeUI('auto');
-                this.precisionInput.value = 10;
-                this.precisionValue.textContent = 10;
-                this.onSettingsChange();
-                this.close();
-            }
-        });
-    }
+    // Reset
+    resetBtn.addEventListener('click', () => {
+      if (confirm('This will delete all history and reset settings. Are you sure?')) {
+        this.calculator.clearHistory();
+        this.calculator.settings = { precision: 10, theme: 'auto' };
+        this.calculator.saveState();
+        ThemeManager.setTheme('auto');
+        this.updateThemeUI('auto');
+        this.precisionInput.value = 10;
+        this.precisionValue.textContent = 10;
+        this.onSettingsChange();
+        this.close();
+      }
+    });
+  }
 
-    updateThemeUI(activeTheme) {
-        this.themeBtns.forEach(btn => {
-            const isSelected = btn.dataset.theme === activeTheme;
-            if (isSelected) {
-                btn.classList.add('bg-blue-50', 'dark:bg-blue-900/20', 'border-blue-200', 'dark:border-blue-800', 'text-blue-600', 'dark:text-blue-400');
-                btn.classList.remove('text-slate-600', 'dark:text-slate-400');
-            } else {
-                btn.classList.remove('bg-blue-50', 'dark:bg-blue-900/20', 'border-blue-200', 'dark:border-blue-800', 'text-blue-600', 'dark:text-blue-400');
-                btn.classList.add('text-slate-600', 'dark:text-slate-400');
-            }
-        });
-    }
+  updateThemeUI(activeTheme) {
+    this.themeBtns.forEach(btn => {
+      const isSelected = btn.dataset.theme === activeTheme;
+      if (isSelected) {
+        btn.classList.add('bg-blue-50', 'dark:bg-blue-900/20', 'border-blue-200', 'dark:border-blue-800', 'text-blue-600', 'dark:text-blue-400');
+        btn.classList.remove('text-slate-600', 'dark:text-slate-400');
+      } else {
+        btn.classList.remove('bg-blue-50', 'dark:bg-blue-900/20', 'border-blue-200', 'dark:border-blue-800', 'text-blue-600', 'dark:text-blue-400');
+        btn.classList.add('text-slate-600', 'dark:text-slate-400');
+      }
+    });
+  }
 
-    open() {
-        this.isOpen = true;
-        this.modal.classList.remove('-translate-x-full');
-    }
+  open() {
+    this.isOpen = true;
+    this.modal.classList.remove('-translate-x-full');
+  }
 
-    close() {
-        this.isOpen = false;
-        this.modal.classList.add('-translate-x-full');
-    }
+  close() {
+    this.isOpen = false;
+    this.modal.classList.add('-translate-x-full');
+  }
 }

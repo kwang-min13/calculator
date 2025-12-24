@@ -48,23 +48,23 @@ export class Evaluator {
    */
   applyOperator(op, a, b) {
     switch (op) {
-      case '+':
-        return a + b;
-      case '-':
-        return a - b;
-      case '×':
-        return a * b;
-      case '÷':
-        if (b === 0) {
-          throw new Error(`${ErrorType.MATH_ERROR}: Division by zero`);
-        }
-        return a / b;
-      case '^':
-        return Math.pow(a, b);
-      case '%':
-        return a % b;
-      default:
-        throw new Error(`${ErrorType.SYNTAX_ERROR}: Unknown operator ${op}`);
+    case '+':
+      return a + b;
+    case '-':
+      return a - b;
+    case '×':
+      return a * b;
+    case '÷':
+      if (b === 0) {
+        throw new Error(`${ErrorType.MATH_ERROR}: Division by zero`);
+      }
+      return a / b;
+    case '^':
+      return Math.pow(a, b);
+    case '%':
+      return a % b;
+    default:
+      throw new Error(`${ErrorType.SYNTAX_ERROR}: Unknown operator ${op}`);
     }
   }
 
@@ -73,36 +73,36 @@ export class Evaluator {
    */
   applyFunction(func, arg) {
     switch (func) {
-      case 'sin':
-        return MathFunctions.sin(arg, this.angleMode);
-      case 'cos':
-        return MathFunctions.cos(arg, this.angleMode);
-      case 'tan':
-        return MathFunctions.tan(arg, this.angleMode);
-      case 'ln':
-        return MathFunctions.ln(arg);
-      case 'log':
-        return MathFunctions.log(arg);
-      case 'sqrt':
-        return MathFunctions.sqrt(arg);
-      case 'asin':
-        return MathFunctions.asin(arg, this.angleMode);
-      case 'acos':
-        return MathFunctions.acos(arg, this.angleMode);
-      case 'atan':
-        return MathFunctions.atan(arg, this.angleMode);
-      case 'sinh':
-        return MathFunctions.sinh(arg);
-      case 'cosh':
-        return MathFunctions.cosh(arg);
-      case 'tanh':
-        return MathFunctions.tanh(arg);
-      case 'abs':
-        return MathFunctions.abs(arg);
-      case 'fact':
-        return MathFunctions.fact(arg);
-      default:
-        throw new Error(`${ErrorType.SYNTAX_ERROR}: Unknown function ${func}`);
+    case 'sin':
+      return MathFunctions.sin(arg, this.angleMode);
+    case 'cos':
+      return MathFunctions.cos(arg, this.angleMode);
+    case 'tan':
+      return MathFunctions.tan(arg, this.angleMode);
+    case 'ln':
+      return MathFunctions.ln(arg);
+    case 'log':
+      return MathFunctions.log(arg);
+    case 'sqrt':
+      return MathFunctions.sqrt(arg);
+    case 'asin':
+      return MathFunctions.asin(arg, this.angleMode);
+    case 'acos':
+      return MathFunctions.acos(arg, this.angleMode);
+    case 'atan':
+      return MathFunctions.atan(arg, this.angleMode);
+    case 'sinh':
+      return MathFunctions.sinh(arg);
+    case 'cosh':
+      return MathFunctions.cosh(arg);
+    case 'tanh':
+      return MathFunctions.tanh(arg);
+    case 'abs':
+      return MathFunctions.abs(arg);
+    case 'fact':
+      return MathFunctions.fact(arg);
+    default:
+      throw new Error(`${ErrorType.SYNTAX_ERROR}: Unknown function ${func}`);
     }
   }
 }
