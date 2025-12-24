@@ -9,6 +9,10 @@ function degToRad(degrees) {
   return (degrees * Math.PI) / 180;
 }
 
+function radToDeg(radians) {
+  return (radians * 180) / Math.PI;
+}
+
 /**
  * Trigonometric functions
  */
@@ -25,6 +29,42 @@ export function cos(x, angleMode = 'DEG') {
 export function tan(x, angleMode = 'DEG') {
   const rad = angleMode === 'DEG' ? degToRad(x) : x;
   return Math.tan(rad);
+}
+
+export function asin(x, angleMode = 'DEG') {
+  if (x < -1 || x > 1) {
+    throw new Error('MATH_ERROR: Invalid input for asin');
+  }
+  const rad = Math.asin(x);
+  return angleMode === 'DEG' ? radToDeg(rad) : rad;
+}
+
+export function acos(x, angleMode = 'DEG') {
+  if (x < -1 || x > 1) {
+    throw new Error('MATH_ERROR: Invalid input for acos');
+  }
+  const rad = Math.acos(x);
+  return angleMode === 'DEG' ? radToDeg(rad) : rad;
+}
+
+export function atan(x, angleMode = 'DEG') {
+  const rad = Math.atan(x);
+  return angleMode === 'DEG' ? radToDeg(rad) : rad;
+}
+
+/**
+ * Hyperbolic functions
+ */
+export function sinh(x) {
+  return Math.sinh(x);
+}
+
+export function cosh(x) {
+  return Math.cosh(x);
+}
+
+export function tanh(x) {
+  return Math.tanh(x);
 }
 
 /**
@@ -52,6 +92,22 @@ export function sqrt(x) {
     throw new Error('MATH_ERROR: Invalid input for sqrt');
   }
   return Math.sqrt(x);
+}
+
+export function abs(x) {
+  return Math.abs(x);
+}
+
+export function fact(x) {
+  if (x < 0 || !Number.isInteger(x)) {
+    throw new Error('MATH_ERROR: Invalid input for factorial');
+  }
+  if (x === 0 || x === 1) return 1;
+  let result = 1;
+  for (let i = 2; i <= x; i++) {
+    result *= i;
+  }
+  return result;
 }
 
 export function pow(base, exponent) {

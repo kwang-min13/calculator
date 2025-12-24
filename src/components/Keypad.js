@@ -15,7 +15,7 @@ export class Keypad {
 
     this.container.innerHTML = `
       <div class="w-full bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-t-3xl p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] border-t border-white/20 dark:border-slate-800/50">
-        <div class="grid grid-cols-4 gap-3 h-full">
+        <div class="grid grid-cols-5 gap-2 h-full">
           ${buttonsHTML}
         </div>
       </div>
@@ -34,7 +34,7 @@ export class Keypad {
       <button 
         class="${styleClasses}" 
         data-type="${config.type}" 
-        data-value="${config.label}"
+        data-value="${config.value || config.label}"
         aria-label="${this.getAriaLabel(config)}"
       >
         ${content}

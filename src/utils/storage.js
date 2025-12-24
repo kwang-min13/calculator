@@ -21,6 +21,7 @@ export class StorageInterface {
 export class LocalStorageAdapter extends StorageInterface {
   save(key, value) {
     try {
+      if (typeof localStorage === 'undefined') return;
       localStorage.setItem(key, JSON.stringify(value));
     } catch (e) {
       console.warn('Failed to save to localStorage:', e);
@@ -29,6 +30,7 @@ export class LocalStorageAdapter extends StorageInterface {
 
   load(key) {
     try {
+      if (typeof localStorage === 'undefined') return null;
       const data = localStorage.getItem(key);
       return data ? JSON.parse(data) : null;
     } catch (e) {
@@ -74,6 +76,7 @@ export class StorageManager {
       history: [],
       settings: {
         theme: 'auto',
+        precision: 10,
         maxHistoryItems: 50,
       },
     };
