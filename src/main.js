@@ -126,39 +126,39 @@ document.addEventListener('DOMContentLoaded', () => {
   // Button click handler
   function handleButtonClick(type, value) {
     switch (type) {
-      case 'digit':
-        calculator.inputDigit(value);
-        break;
-      case 'operator':
-        calculator.inputOperator(value);
-        break;
-      case 'function':
-        calculator.inputFunction(value);
-        break;
-      case 'constant':
-        if (value === 'π') {
-          calculator.inputDigit(Math.PI.toString());
-        }
-        break;
-      case 'parenthesis':
-        // Toggle between ( and )
-        calculator.inputParenthesis();
-        break;
-      case 'clear':
-        calculator.clear();
-        break;
-      case 'backspace':
-        calculator.backspace();
-        break;
-      case 'equals':
-        calculator.calculate();
-        break;
-      case 'memory':
-        if (value === 'M+') calculator.memoryAdd();
-        else if (value === 'M-') calculator.memorySubtract();
-        else if (value === 'MR') calculator.memoryRecall();
-        else if (value === 'MC') calculator.memoryClear();
-        break;
+    case 'digit':
+      calculator.inputDigit(value);
+      break;
+    case 'operator':
+      calculator.inputOperator(value);
+      break;
+    case 'function':
+      calculator.inputFunction(value);
+      break;
+    case 'constant':
+      if (value === 'π') {
+        calculator.inputDigit(Math.PI.toString());
+      }
+      break;
+    case 'parenthesis':
+      // Toggle between ( and )
+      calculator.inputParenthesis();
+      break;
+    case 'clear':
+      calculator.clear();
+      break;
+    case 'backspace':
+      calculator.backspace();
+      break;
+    case 'equals':
+      calculator.calculate();
+      break;
+    case 'memory':
+      if (value === 'M+') calculator.memoryAdd();
+      else if (value === 'M-') calculator.memorySubtract();
+      else if (value === 'MR') calculator.memoryRecall();
+      else if (value === 'MC') calculator.memoryClear();
+      break;
     }
 
     updateDisplay();
