@@ -127,6 +127,31 @@ export class Calculator {
   }
 
   /**
+   * Input a parenthesis - Smart toggle
+   */
+  inputParenthesis() {
+    if (this.error) {
+      this.clear();
+    }
+
+    const openCount = (this.expression.match(/\(/g) || []).length;
+    const closeCount = (this.expression.match(/\)/g) || []).length;
+
+    const lastChar = this.expression.trim().slice(-1);
+    const isLastDigit = /\d|\)/.test(lastChar);
+
+    if (openCount > closeCount && isLastDigit) {
+      this.expression += ')';
+    } else {
+      // Implicit multiplication if previously a digit or closing paren? 
+      // Standard calc behavior: 2( -> 2*( usually.
+      // But for now let's just input (.
+      // Actually, if we are just appending string:
+      this.expression += '(';
+    }
+  }
+
+  /**
    * Toggle angle mode (DEG/RAD)
    */
   toggleAngleMode() {
